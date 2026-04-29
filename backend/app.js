@@ -47,6 +47,7 @@ app.use('/signout', (req, res, next) => {
   }
   next();
 });
+app.get('/metrics', metricsHandler);
 
 configRoutes(app);
 
