@@ -1,0 +1,10 @@
+FROM node:25
+
+# Install git
+RUN npm install -g git
+
+# Clone repository
+CMD ["sh", "-c", "git clone https://github.com/4rrgon/snapraid-web-ui . && \
+    ls && \
+    cd ./frontend && npm install && npm start & \
+    cd ./backend && npm install && npm start"]

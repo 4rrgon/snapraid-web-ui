@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import configRoutes from './routes/index.js';
 import { jwtVerifyMiddleware } from './middleware.js';
+import cors from 'cors';
 
 dotenv.config();
 const app = express();
@@ -11,6 +12,14 @@ if (!secret) {
   console.warn('WARNING: SECRET is not set in environment. Set process.env.SECRET for JWT signing.');
 }
 
+
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  credentials: true,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+app.options('*', cors());
 app.use('/public', express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,7 +50,7 @@ app.use('/signout', (req, res, next) => {
 
 configRoutes(app);
 
-app.listen(3000, () => {
+app.listen(3000, '0.0.0.0', () => {
   console.log("We've now got a server!");
   console.log('Your routes will be running on http://localhost:3000');
 });

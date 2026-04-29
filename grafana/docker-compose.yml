@@ -1,0 +1,44 @@
+services:
+  app:
+    build: .
+    container_name: snapraid-app
+    ports:
+      - "3000:3000"
+    environment:
+      - SECRET=somesecret
+      - ADMINEMAIL=admin@example.com
+      - ADMINPASSWORD=Password1!
+      - CONFIG=/etc/snapraid.conf
+    volumes:
+      - /etc/snapraid.conf:/etc/snapraid.conf:ro
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: snapraid-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    depends_on:
+      - app
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: snapraid-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    depends_on:
+      - prometheus
+
+volumes:
+  grafana-data:

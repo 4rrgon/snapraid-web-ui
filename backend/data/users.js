@@ -37,7 +37,8 @@ export const login = async (email, password) => {
         lastLogin: getLastLogin()
       };
     return returnedObj
+  } else {
+    return false;
   }
 
-  password = checkPassword(password);
 };
