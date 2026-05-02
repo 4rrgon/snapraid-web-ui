@@ -54,6 +54,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/metrics', metricsHandler);
+
+
 app.use('/signout', (req, res, next) => {
   if (!req.user) {
     return res.status(400).json({ error: 'Not signed in' });
@@ -63,7 +66,6 @@ app.use('/signout', (req, res, next) => {
 
 configRoutes(app);
 
-app.get('/metrics', metricsHandler);
 
 
 app.listen(3000, '0.0.0.0', () => {
