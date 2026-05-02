@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import configRoutes from './routes/index.js';
 import { jwtVerifyMiddleware } from './middleware.js';
 import cors from 'cors';
+import { metricsHandler } from './data/metrics.js';
 
 dotenv.config();
 const app = express();
@@ -47,9 +48,11 @@ app.use('/signout', (req, res, next) => {
   }
   next();
 });
-app.get('/metrics', metricsHandler);
 
 configRoutes(app);
+
+app.get('/metrics', metricsHandler);
+
 
 app.listen(3000, '0.0.0.0', () => {
   console.log("We've now got a server!");

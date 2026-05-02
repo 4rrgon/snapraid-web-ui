@@ -1,14 +1,12 @@
 FROM node:25-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Install git
 RUN apk add --no-cache git
 
-# Clone repository
 RUN git clone https://github.com/4rrgon/snapraid-web-ui .
 
-# Install dependencies and start services
-CMD ["sh", "-c", "cd ./frontend && npm install && npm start & \
-    cd ./backend && npm install && npm start"]
+RUN cd backend && npm install && \
+    cd ../frontend && npm install
+
+CMD ["sh"]

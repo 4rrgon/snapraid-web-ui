@@ -93,7 +93,6 @@ router.get('/smart', async (req, res) => {
   }
 });
 
-app.get('/metrics', metricsHandler);
 
 
 export default router;
