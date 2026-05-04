@@ -64,10 +64,17 @@
       "gridPos": { "x": 6, "y": 0, "w": 6, "h": 5 },
       "targets": [
         {
-          "expr": "sum(increase(snapraid_action_runs_total{result=\"error\"}[24h]))",
+          "expr": "round(sum(increase(snapraid_action_runs_total{result=\"error\"}[24h])))",
           "refId": "A"
         }
       ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0
+        },
+        "overrides": []
+      },
       "options": {
         "reduceOptions": {
           "calcs": ["lastNotNull"],
@@ -105,7 +112,7 @@
       "gridPos": { "x": 18, "y": 0, "w": 6, "h": 5 },
       "targets": [
         {
-          "expr": "max(snapraid_last_run_timestamp_seconds{action=~\"$action\"})",
+          "expr": "max(snapraid_last_run_timestamp_seconds{action=~\"$action\"}) * 1000",
           "refId": "A"
         }
       ],

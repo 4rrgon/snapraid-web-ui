@@ -10,9 +10,9 @@ services:
       ADMINEMAIL: admin@example.com
       ADMINPASSWORD: Password1!
       OLLAMA: http://192.168.52.193:11434/api/chat
-      CONFIG: /etc/snapraid.conf
+      CONFIG: /etc/snapraid/snapraid.conf
     volumes:
-      - /etc/snapraid.conf:/etc/snapraid.conf:ro
+      - ./config:/etc/snapraid/:ro
     restart: unless-stopped
 
   frontend:

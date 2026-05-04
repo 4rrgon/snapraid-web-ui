@@ -7,7 +7,7 @@ import { promisify } from 'node:util';
 const execAsync = promisify(execCb);
 
 const getConfig = () => process.env.CONFIG || '/etc/snapraid.conf';
-const buildCmd = (args) => `snapraid ${args} --config=${JSON.stringify(getConfig())}`;
+const buildCmd = (args) => `snapraid ${args} --conf=${JSON.stringify(getConfig())}`;
 
 export const isSnapraidRunning = async () => {
   try {

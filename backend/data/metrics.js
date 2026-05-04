@@ -48,7 +48,7 @@ export async function observeAction(action, fn) {
   try {
     const result = await fn();
     snapraidActionRuns.labels(action, 'success').inc();
-    snapraidLastSuccessTimestamp.labels(action).set(Date.now() / 1000);
+    snapraidLastSuccessTimestamp.labels(action).set(Date.now());
     return result;
   } catch (err) {
     snapraidActionRuns.labels(action, 'error').inc();
@@ -56,6 +56,6 @@ export async function observeAction(action, fn) {
   } finally {
     endTimer();
     snapraidActionRunning.labels(action).dec();
-    snapraidLastRunTimestamp.labels(action).set(Date.now() / 1000);
+    snapraidLastRunTimestamp.labels(action).set(Date.now());
   }
 }
