@@ -23,7 +23,3 @@ export async function runTrivy(targetPath = '/app') {
 export async function scanProject(projectPath) {
   return runTrivy(['fs', '--scanners', 'vuln,secret,misconfig', projectPath]);
 }
-
-export async function scanImage(imageName) {
-  return runTrivy(['image', '--severity', 'HIGH,CRITICAL', '--ignore-unfixed', imageName]);
-}

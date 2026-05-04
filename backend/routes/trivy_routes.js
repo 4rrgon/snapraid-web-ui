@@ -5,16 +5,7 @@ const router = Router();
 
 router.get('/project', async (req, res) => {
   try {
-    const report = await scanProject('/srv/app');
-    res.json(report);
-  } catch (e) {
-    res.status(500).json({ error: e?.message || String(e) });
-  }
-});
-
-router.get('/image', async (req, res) => {
-  try {
-    const report = await scanImage('my-dashboard:latest');
+    const report = await scanProject('/app');
     res.json(report);
   } catch (e) {
     res.status(500).json({ error: e?.message || String(e) });
