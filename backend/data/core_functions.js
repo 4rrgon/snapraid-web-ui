@@ -1,4 +1,3 @@
-// data/core_functions.js
 import dotenv from 'dotenv';
 dotenv.config();
 

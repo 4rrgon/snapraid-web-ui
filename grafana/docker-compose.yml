@@ -9,6 +9,7 @@ services:
       SECRET: somesecret
       ADMINEMAIL: admin@example.com
       ADMINPASSWORD: Password1!
+      OLLAMA: http://192.168.52.193:11434/api/chat
       CONFIG: /etc/snapraid.conf
     volumes:
       - /etc/snapraid.conf:/etc/snapraid.conf:ro
