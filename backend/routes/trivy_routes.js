@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { scanProject, scanImage } from '../data/trivy.js';
+import { scanProject } from '../data/trivy.js';
 
 const router = Router();
 
