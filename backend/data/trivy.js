@@ -6,12 +6,12 @@ import path from 'node:path';
 
 const execFileAsync = promisify(execFile);
 
-export async function runTrivy(targetPath = '/app') {
+export async function runTrivy(args) {
   const outFile = path.join(os.tmpdir(), `trivy-${Date.now()}.json`);
 
   await execFileAsync(
     'trivy',
-    ['fs', targetPath, '--format', 'json', '--output', outFile],
+    [...args, '--format', 'json', '--output', outFile],
     { maxBuffer: 20 * 1024 * 1024 }
   );
 
@@ -21,5 +21,9 @@ export async function runTrivy(targetPath = '/app') {
 }
 
 export async function scanProject(projectPath) {
-  return runTrivy(['fs', '--scanners', 'vuln,secret,misconfig', projectPath]);
+  return runTrivy([
+    'fs',
+    '--scanners', 'vuln,secret,misconfig',
+    projectPath
+  ]);
 }
