@@ -1,4 +1,3 @@
-// src/components/SyncCard.jsx
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Button, Stack } from '@mui/material';
 import SyncModal from './SyncModal.jsx';

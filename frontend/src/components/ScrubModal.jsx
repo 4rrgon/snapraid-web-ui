@@ -1,4 +1,3 @@
-// src/components/ScrubModal.jsx
 import React, { useEffect, useState } from 'react';
 import {
   Dialog,

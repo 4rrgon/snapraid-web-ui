@@ -9,10 +9,10 @@ const SideBar = () => {
     <Drawer
       variant="permanent"
       sx={{
-        width: 220,
+        width: 200,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: 220,
+          width: 200,
           backgroundColor: 'darkslategray',
           color: 'white'
         }
@@ -25,6 +25,10 @@ const SideBar = () => {
 
         <ListItemButton onClick={() => navigate('/settings')}>
           <ListItemText primary="Schedules" />
+        </ListItemButton>
+
+        <ListItemButton onClick={() => navigate('/chat')}>
+          <ListItemText primary="Chatbot" />
         </ListItemButton>
       </List>
     </Drawer>
