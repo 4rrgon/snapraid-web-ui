@@ -6,12 +6,12 @@ import path from 'node:path';
 
 const execFileAsync = promisify(execFile);
 
-async function runTrivy(args) {
-  const outFile = path.join(os.tmpdir(), `trivy-${Date.now()}-${Math.random().toString(16).slice(2)}.json`);
+export async function scanFilesystem(targetPath = '/srv/app') {
+  const outFile = path.join(os.tmpdir(), `trivy-${Date.now()}.json`);
 
   await execFileAsync(
     'trivy',
-    [...args, '--format', 'json', '--output', outFile],
+    ['fs', targetPath, '--format', 'json', '--output', outFile],
     { maxBuffer: 20 * 1024 * 1024 }
   );
 
