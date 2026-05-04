@@ -11,7 +11,7 @@ export async function runTrivy(args) {
 
   await execFileAsync(
     'trivy',
-    [...args, '--format', 'json', '--output', '--enable-ai', outFile],
+    [...args, '--format', 'json', '--enable-ai', '--output', outFile],
     { maxBuffer: 20 * 1024 * 1024 }
   );
 
