@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const execFileAsync = promisify(execFile);
 
-export async function runTrivy(targetPath = '/srv/app') {
+export async function runTrivy(targetPath = '/app') {
   const outFile = path.join(os.tmpdir(), `trivy-${Date.now()}.json`);
 
   await execFileAsync(
