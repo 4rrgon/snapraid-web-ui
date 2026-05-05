@@ -39,7 +39,7 @@
       "gridPos": { "x": 0, "y": 0, "w": 6, "h": 5 },
       "targets": [
         {
-          "expr": "sum(increase(snapraid_action_runs_total{result=\"success\"}[24h]))",
+          "expr": "round(sum(increase(snapraid_action_runs_total{result=\"success\"}[24h])))",
           "refId": "A"
         }
       ],
@@ -103,31 +103,6 @@
         "valueMappings": [
           { "type": "value", "options": { "0": { "text": "Idle" }, "1": { "text": "Running" } } }
         ]
-      }
-    },
-    {
-      "type": "stat",
-      "title": "Last Run Time",
-      "datasource": "Prometheus",
-      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 5 },
-      "targets": [
-        {
-          "expr": "max(snapraid_last_run_timestamp_seconds{action=~\"$action\"}) * 1000",
-          "refId": "A"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "dateTimeAsIso"
-        },
-        "overrides": []
-      },
-      "options": {
-        "reduceOptions": {
-          "calcs": ["lastNotNull"],
-          "fields": "",
-          "values": false
-        }
       }
     },
     {

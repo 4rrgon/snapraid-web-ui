@@ -13,6 +13,8 @@ services:
       CONFIG: /etc/snapraid/snapraid.conf
     volumes:
       - ./config:/etc/snapraid/:ro
+      - ./disk1:/mnt/disk1
+      - ./parity:/mnt/parity1
     restart: unless-stopped
 
   frontend:
